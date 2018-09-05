@@ -1,0 +1,168 @@
+  <!DOCTYPE html>
+
+   <html>
+
+   	<head>
+
+   		<title>Contact</title>
+
+   		<link rel="stylesheet" type="text/css" href="Register.css" media="all"/>
+
+   	</head>
+
+   	<body background="https://image.noelshack.com/fichiers/2018/36/3/1536153091-imagefond.jpg">
+
+         <ul>
+
+   		  <li><a href="#Home">Home</a></li>
+     		  <li><a href="/Questionnary">Questionnary</a></li>
+     		  <li><a href="/Contact">Contact</a></li>
+           <li><a href="/Register">Register</a></li>
+           <li><a href="/Login">Login</a></li>
+     		  <li style="float:right"><a class="active" href="/Credits">About</a></li>
+
+         </ul>
+
+         <br>
+         <br>
+         <br>
+
+         <style>
+            p { color: #FF0000; }
+            label { color: #FF0000; }
+         </style>
+
+     		<p>Please enter your personal informations :</p> <br>
+
+   		<label for="prenom">Login :</label>  
+   			<input type="text" name="prenom" id="prenom" placeholder="" size="30" maxlength="20" required="" onblur="verifPseudo(this)"/>
+
+   		<br>
+
+   		<label for="password">Password :</label>
+   			<input type="text" name="password" id="password" placeholder="" size="30" maxlength="20" required="" onblur="verifPassword(this)"/>
+            
+         <br>
+
+         <label for="confpassword">Confirm password :</label>
+            <input type="text" name="confpassword" id="confpassword" placeholder="" size="30" maxlength="20" required="" nblur="verifPassword(this)"/>
+            
+         <br>
+
+         <label for="e-mail">Email adress :</label>  
+            <input type="e-mail" name="e-mail" id="e-mail" placeholder="" size="30" maxlength="30" required="" onblur="verifMail(this)"/>
+
+         <br>
+
+         <label for="age">Enter your date of birth :</label> 
+            <input type="date" name="age" id="age" placeholder="Ex : 12/09/1992" size="30" maxlength="10" required=""/>
+
+         <br><br><br>
+         <p><input type="checkbox" name="accept" value="1"> I accept the terms and conditions</p>
+
+         <br><br>
+
+         <input type="submit" value="Submit">
+
+   	</body>	
+
+   	<script>
+
+   		function FocusFonction() {
+      			document.getElementById("focus").value = "";
+   		}
+   		
+   		function FocusoutFonction() {
+   			
+   			if (document.getElementById("focus").value == ""){
+      				document.getElementById("focus").value ="Entrez votre texte ici..." ;
+   			}
+   		}
+
+   		function surligne(champ, erreur){
+      			if(erreur)
+         			champ.style.backgroundColor = "#fba";
+      			else
+         			champ.style.backgroundColor = "#c4ffaa";
+   			}
+
+   		function verifPseudo(champ){
+
+      			if(champ.value.length < 2 || champ.value.length > 25){
+         			surligne(champ, true);
+         			return false;
+      			}
+
+      			else{
+         			surligne(champ, false);
+         			return true;
+      			}
+   		}
+
+         function verifPassword(champ){
+
+            var password = document.getElementById("password").value;
+            var confpassword = document.getElementById("confirm_password").value;
+
+            if("password" != "confirm_password"){
+               surligne(champ, true);
+               return false;
+            }
+
+            else{
+               surligne(champ, false);
+               return true;
+            }
+         }
+
+   		function verifMail(champ){
+      		var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+      			
+      			if(!regex.test(champ.value)){
+         			surligne(champ, true);
+         			return false;
+      			}
+      			
+      			else{
+         			surligne(champ, false);
+         			return true;
+      			}
+   		}
+   		
+         function verifAge(champ){
+
+            var age = parseInt(champ.value);
+
+            if(isNaN(age) || age < 16) {
+               surligne(champ, true);
+               return false;
+            }
+            else
+            {
+               surligne(champ, false);
+               return true;
+            }
+         }
+
+   		function verifForm(f){
+
+      		var pseudoOk = verifPseudo(f.pseudo);
+      		var mailOk = verifMail(f.email);
+            var passwordOk = verifPassword(f.password);
+            var confpasswordOk = verifPassword(f.confpassword);
+            var ageOk = verifAge(f.age);
+      
+      			if(pseudoOk && mailOk && passwordOk && confpasswordOk)
+         			
+         			return true;
+      			
+      			else
+      			{
+         			alert("You must fill all the boxes");
+         			return false;
+      			}
+   		}
+
+   	</script>
+
+   </html>
