@@ -1,0 +1,155 @@
+ <!DOCTYPE html>
+
+  <html>
+
+  	<head>
+
+  		<title>Questionnary</title>
+
+      <link rel="stylesheet" type="text/css" href="Questionnary.css" media="all"/>
+  		
+  	</head>
+
+  	<body background="https://image.noelshack.com/fichiers/2018/36/3/1536153091-imagefond.jpg">
+
+      <ul>
+
+  			<li><a href="#Home">Home</a></li>
+    		<li><a href="/Questionnary">Questionnary</a></li>
+    		<li><a href="/Contact">Contact</a></li>
+        <li><a href="/Register">Register</a></li>
+        <li><a href="/Login">Login</a></li>
+    		<li style="float:right"><a class="active" href="/Credits">About</a></li>
+
+      </ul>
+
+        <br><br><br><br>
+   
+  		<form method="post" action="https://www.filigrane-technologie.fr/test.php" onsubmit="return verifForm(this)">	
+
+  			<fieldset>
+
+           <style>
+              legend { color: #FF0000; }
+              label { color: #FF0000; }
+              p { color: #FF0000; }
+           </style>
+
+         			<legend>Your personnal informations</legend>
+  			
+  				<label for="nom">Enter your lastname</label> : 
+  				<input type="text" name="nom" id="nom" placeholder="Ex : Dupont" size="30" maxlength="10" required="" onblur="verifPseudo(this)"/>
+
+  				<br><br/>
+
+  				<label for="prenom">Enter your name</label> : 
+  				<input type="text" name="prenom" id="prenom" placeholder="Ex : Pierre" size="30" maxlength="10" required="" onblur="verifPseudo(this)"/>
+
+  				<br><br/>
+
+  				<label for="age">Enter your date of birth</label> : 
+  				<input type="date" name="age" id="age" placeholder="Ex : 12/09/1992" size="30" maxlength="10" required=""/>
+
+  				<br><br/>
+
+  				<label for="e-mail">Enter your email adress</label> : 
+  				<input type="e-mail" name="e-mail" id="e-mail" placeholder="Ex : Pierre.Dupont@gmail.com" size="30" maxlength="30" required="" onblur="verifMail(this)"/>
+
+  				<br><br/>
+
+  				<label for="commentaire">Do you want to add any commentary ?</label><br/>
+         			<textarea name="commentaire" id="commentaire" rows="5" cols="80" id="focus" placeholder="Blablabla" onfocus="FocusFonction()" onfocusout="FocusoutFonction()"></textarea>
+  			
+  				<br><br/>
+
+  			<fieldset>
+  			
+  			<fieldset>
+         			<legend>Gender</legend>
+   
+         			<p>
+             			Select : 
+
+             			<input type="radio" name="sexe" value="Homme" id="Homme" required="" /> <label for="Homme">I'm a man</label>
+             			<input type="radio" name="sexe" value="Femme" id="Femme" required="" /> <label for="Femme">I'm a woman</label>
+         			</p>
+   
+         			<p>
+            			<label for="precisions">If "Other", precise please :</label>
+             			<textarea name="precisions" id="precisions" cols="40" rows="4"></textarea>
+         			</p>
+     				
+     			</fieldset>
+
+  			<input type="submit" value="Submit">
+  		
+  		</form>
+
+  	</body>
+
+  	<script>
+
+  		function FocusFonction() {
+     			document.getElementById("focus").value = "";
+  		}
+  		
+  		function FocusoutFonction() {
+  			
+  			if (document.getElementById("focus").value == ""){
+     				document.getElementById("focus").value ="Enter your text here..." ;
+  			}
+  		}
+
+  		function surligne(champ, erreur){
+     			if(erreur)
+        			champ.style.backgroundColor = "#fba";
+     			else
+        			champ.style.backgroundColor = "";
+  		}
+
+  		function verifPseudo(champ){
+
+     			if(champ.value.length < 2 || champ.value.length > 25){
+        			surligne(champ, true);
+        			return false;
+     			}
+
+     			else{
+        			surligne(champ, false);
+        			return true;
+     			}
+  		}
+
+  		function verifMail(champ){
+     		var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+     			
+     			if(!regex.test(champ.value)){
+        			surligne(champ, true);
+        			return false;
+     			}
+     			
+     			else{
+        			surligne(champ, false);
+        			return true;
+     			}
+  		}
+  		
+  		function verifForm(f){
+
+     		var pseudoOk = verifPseudo(f.pseudo);
+     		var mailOk = verifMail(f.email);
+     
+     			if(pseudoOk && mailOk)
+        			
+        			return true;
+     			
+     			else
+     			{
+        			alert("You must fill all the boxes");
+        			return false;
+     			}
+  		}
+
+  	</script>
+
+  </html>

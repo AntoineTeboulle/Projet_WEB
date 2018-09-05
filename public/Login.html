@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+   <html>
+
+   	<head>
+
+   		<title>Contact</title>
+
+   		<link rel="stylesheet" type="text/css" href="Login.css" media="all"/>
+
+   	</head>
+
+   	<body background="https://image.noelshack.com/fichiers/2018/36/3/1536153091-imagefond.jpg">
+
+      <ul>
+
+   		<li><a href="#Home">Home</a></li>
+     		<li><a href="/Questionnary">Questionnary</a></li>
+     		<li><a href="/Contact">Contact</a></li> 
+         <li><a href="/Register">Register</a></li>
+         <li><a href="/Login">Login</a></li>
+     		<li style="float:right"><a class="active" href="/Credits">About</a></li>
+
+      </ul>
+
+         <br><br><br><br>
+
+         <style>
+            p { color: #FF0000; }
+            label { color: #FF0000; }
+         </style>
+
+     		<p>Please enter your personal informations :</p>
+
+         <br>
+
+   		<label for="prenom">Login :</label>  
+   			<input type="text" name="prenom" id="prenom" placeholder="" size="30" maxlength="20" required="" onblur="verifPseudo(this)"/>
+
+   		<br><br>
+
+   		<label for="prenom">Password :</label>
+   			<input type="text" name="prenom" id="pass" placeholder="" size="30" maxlength="20" required="" onblur="verifPseudo(this)"/>
+            
+         <br><br><br>
+
+         <input type="submit" value="Submit">
+
+   	</body>	
+
+   	<script>
+
+   		function FocusFonction() {
+      			document.getElementById("focus").value = "";
+   		}
+   		
+   		function FocusoutFonction() {
+   			
+   			if (document.getElementById("focus").value == ""){
+      				document.getElementById("focus").value ="Entrez votre texte ici..." ;
+   			}
+   		}
+
+   		function surligne(champ, erreur){
+      			if(erreur)
+         			champ.style.backgroundColor = "#fba";
+      			else
+         			champ.style.backgroundColor = "";
+   			}
+
+   		function verifPseudo(champ){
+
+      			if(champ.value.length < 2 || champ.value.length > 25){
+         			surligne(champ, true);
+         			return false;
+      			}
+               
+      			else{
+         			surligne(champ, false);
+         			return true;
+      			}
+   		}
+   		
+   		function verifForm(f){
+
+      		var pseudoOk = verifPseudo(f.pseudo);
+      		var mailOk = verifMail(f.email);
+      
+      			if(pseudoOk && mailOk)
+         			
+         			return true;
+      			
+      			else
+      			{
+         			alert("You must fill all the boxes");
+         			return false;
+      			}
+   		}
+
+   	</script>
+
+   </html>
